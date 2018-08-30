@@ -134,6 +134,14 @@ class Game
 gui = ->
   window.game = new Game SVG('game'),
     window.board, window.ballStart, window.magnetStart
+  document.getElementById('left')?.addEventListener 'click', ->
+    window.game.moveMagnet -1, 0
+  document.getElementById('down')?.addEventListener 'click', ->
+    window.game.moveMagnet 0, +1
+  document.getElementById('up')?.addEventListener 'click', ->
+    window.game.moveMagnet 0, -1
+  document.getElementById('right')?.addEventListener 'click', ->
+    window.game.moveMagnet +1, 0
   document.getElementById('solve')?.addEventListener 'click', -> search false
   document.getElementById('solveHug')?.addEventListener 'click', -> search true
   document.getElementById('download')?.addEventListener 'click', ->
