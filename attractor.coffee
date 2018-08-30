@@ -26,7 +26,7 @@ class Game
     @renderBoard()
     @ball = @svg?.circle().size(1,1).addClass 'ball'
     @magnet = @svg?.circle().size(1,1).addClass 'magnet'
-    @update()
+    @update false
     window?.addEventListener 'keydown', (e) =>
       switch e.key
         when 'h', 'ArrowLeft'
@@ -110,9 +110,13 @@ class Game
     bbox.height += 2*margin
     @svg.viewbox bbox
 
-  update: ->
-    @ball?.move @ballXY...
-    @magnet?.move @magnetXY...
+  update: (anim = 20) ->
+    if anim
+      @ball?.animate(anim).move @ballXY...
+      @magnet?.animate(anim).move @magnetXY...
+    else
+      @ball?.move @ballXY...
+      @magnet?.move @magnetXY...
 
   state: ->
     @ballXY.concat(@magnetXY).toString()
@@ -121,7 +125,7 @@ class Game
     [@ballXY[0], @ballXY[1], @magnetXY[0], @magnetXY[1]] =
       for coord in state.split ','
         parseInt coord
-    @update()
+    @update false
 
   win: ->
     Math.abs(@ballXY[0] - @magnetXY[0]) <= 1 and
