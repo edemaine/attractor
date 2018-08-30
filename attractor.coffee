@@ -1,5 +1,5 @@
 style = '''
-  rect { stroke: black; stroke-width: 0.1; }
+  line { stroke: black; stroke-dasharray: 0.1; stroke-width: 0.1; }
   .obstacle { fill: purple; }
   .blank { fill: white; }
 
@@ -80,21 +80,26 @@ class Game
           stuckY = true
 
   renderBoard: ->
+    return unless @svg?
     for col, x in @board
       for char, y in col
-        @svg?.rect 1, 1
+        @svg.rect 1, 1
         .move x, y
         .addClass switch char
           when obstacle
             'obstacle'
           when blank
             'blank'
+    for x in [0..@board.length]
+      @svg.line x, 0, x, col.length
+    for y in [0..@board[0].length]
+      @svg.line 0, y, @board.length, y
     bbox = @svg.bbox()
     bbox.x -= margin
     bbox.y -= margin
     bbox.width += 2*margin
     bbox.height += 2*margin
-    @svg?.viewbox bbox
+    @svg.viewbox bbox
 
   update: ->
     @ball?.move @ballXY...
