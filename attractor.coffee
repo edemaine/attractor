@@ -6,6 +6,15 @@ style = '''
   circle { stroke: none; }
   .magnet { fill: red; stroke: orange; stroke-opacity: 0.75; stroke-width: 0.3; }
   .ball { fill: gray; stroke: #c0c0c0; stroke-opacity: 0.75; stroke-width: 0.3; }
+
+  .magnet, .ball {
+    animation: pulse 2s linear infinite;
+  }
+  @keyframes pulse {
+    0% { stroke-opacity: 0.9; }
+    50% { stroke-opacity: 0.4; }
+    100% { stroke-opacity: 0.9; }
+  }
 '''
 margin = 0.3 / 2
 obstacle = '1'
