@@ -136,6 +136,14 @@ gui = ->
     window.board, window.ballStart, window.magnetStart
   document.getElementById('solve')?.addEventListener 'click', -> search false
   document.getElementById('solveHug')?.addEventListener 'click', -> search true
+  document.getElementById('download')?.addEventListener 'click', ->
+    blob = new Blob [window.game.svg.svg()], type: "image/svg+xml"
+    document.getElementById('svglink').href = URL.createObjectURL blob
+    document.getElementById('svglink').download =
+      window.location.pathname.replace /^.*\//, ''
+        .replace /\.html$/, '.svg'
+    document.getElementById('svglink').click()
+
 window?.onload = gui
 
 window?.animate = (states) ->
