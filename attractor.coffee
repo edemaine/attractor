@@ -15,6 +15,11 @@ style = '''
     50% { stroke-opacity: 0.4; }
     100% { stroke-opacity: 0.9; }
   }
+
+  .m1 { fill: #ccc; }
+  .m2 { fill: #999; }
+  .m3 { fill: #555; }
+  .colorBall { fill: gray; }
 '''
 margin = 0.3 / 2
 obstacle = '1'
@@ -90,15 +95,16 @@ class Game
 
   renderBoard: ->
     return unless @svg?
-    for col, x in @board
-      for char, y in col
-        @svg.rect 1, 1
-        .move x, y
-        .addClass switch char
-          when obstacle
-            'obstacle'
-          when blank
-            'blank'
+    @squares =
+      for col, x in @board
+        for char, y in col
+          @svg.rect 1, 1
+          .move x, y
+          .addClass switch char
+            when obstacle
+              'obstacle'
+            when blank
+              'blank'
     for x in [0..@board.length]
       @svg.line x, 0, x, col.length
     for y in [0..@board[0].length]
@@ -182,12 +188,21 @@ search = (hug = false) ->
   #game = new Game null, level.board, [10,25], [6,25]
   ## A good test for hugMoves
   #level.board[13][25] = blank
+  counts = {}
   todo = [game.state()]
   parent = {}
   parent[game.state()] = null
   while todo.length
     state = todo.shift()
     game.loadState state
+    counts[game.magnetXY] ?= 0
+    counts[game.magnetXY] += 1
+    #counts[game.ballXY] ?= 0
+    #counts[game.ballXY] += 1
+    if window.colorBall? and
+       game.ballXY[0] == window.colorBall[0] and
+       game.ballXY[1] == window.colorBall[1]
+      window.game.squares[game.magnetXY[0]][game.magnetXY[1]].addClass "colorBall"
     if game.win()
       log '## WIN! :-('
       here = state
@@ -210,11 +225,25 @@ search = (hug = false) ->
         todo.push moveState
   log '## LOSE! :-)'
   log "#{(key for key of parent).length} visited states"
-  count = 0
+  filled = 0
+  unfilled = 0
   for col in board
     for char in col
       if char == obstacle
-        count += 1
-  log "#{count} filled pixels"
+        filled += 1
+      else
+        unfilled += 1
+  log "#{filled} filled pixels"
+  log "#{unfilled} unfilled pixels"
+  hist = {}
+  total = 0
+  for key, count of counts
+    hist[count] ?= 0
+    hist[count] += 1
+    total += 1
+    [x, y] = key.split ","
+    #window.game.squares[x][y].addClass "m#{count}"
+  console.log hist
+  console.log "#{total} total places"
 
 search() if module?
