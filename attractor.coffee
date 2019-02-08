@@ -1,4 +1,4 @@
-style = '''
+style = """
   line { stroke: black; stroke-dasharray: 0.1; stroke-width: 0.1; }
   .obstacle { fill: purple; }
   .blank { fill: white; }
@@ -16,11 +16,12 @@ style = '''
     100% { stroke-opacity: 0.9; }
   }
 
-  .m1 { fill: #ccc; }
-  .m2 { fill: #999; }
-  .m3 { fill: #555; }
-  .colorBall { fill: gray; }
-'''
+  .colorMagnet0 { fill: rgba(0,#{255-128*1.0},0); }
+  .colorMagnet1 { fill: rgba(0,#{255-128*0.7},0); }
+  .colorMagnet2 { fill: rgba(0,#{255-128*0.4},0); }
+  .colorMagnet3 { fill: rgba(0,#{255-128*0.2},0); }
+  .colorMagnet4 { fill: rgba(0,#{255-128*0.0},0); }
+"""
 margin = 0.3 / 2
 obstacle = '1'
 blank = '?'
@@ -185,6 +186,13 @@ search = (hug = false) ->
     levelFile = "./#{levelFile}"
     level = require levelFile
     game = new Game null, level.board, level.ballStart, level.magnetStart
+  if window.colorBall?
+    for position, i in window.colorBall
+      window.game.svg.circle 0.666
+      .center position[0] + 0.5, position[1] + 0.5
+      .addClass "colorMagnet#{i}"
+  window.game.ball.remove()
+  window.game.magnet.remove()
   #game = new Game null, level.board, [10,25], [6,25]
   ## A good test for hugMoves
   #level.board[13][25] = blank
@@ -199,10 +207,11 @@ search = (hug = false) ->
     counts[game.magnetXY] += 1
     #counts[game.ballXY] ?= 0
     #counts[game.ballXY] += 1
-    if window.colorBall? and
-       game.ballXY[0] == window.colorBall[0] and
-       game.ballXY[1] == window.colorBall[1]
-      window.game.squares[game.magnetXY[0]][game.magnetXY[1]].addClass "colorBall"
+    if window.colorBall?
+      for position, i in window.colorBall
+        if game.ballXY[0] == position[0] and
+           game.ballXY[1] == position[1]
+          window.game.squares[game.magnetXY[0]][game.magnetXY[1]].addClass "colorMagnet#{i}"
     if game.win()
       log '## WIN! :-('
       here = state
