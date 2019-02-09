@@ -1,5 +1,5 @@
 style = """
-  line { stroke: black; stroke-dasharray: 0.1; stroke-width: 0.1; }
+  line { stroke: #444; stroke-dasharray: 0.075; stroke-width: 0.075; }
   .obstacle { fill: purple; }
   .blank { fill: white; }
 
