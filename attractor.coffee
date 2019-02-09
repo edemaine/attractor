@@ -199,8 +199,8 @@ search = (hug = false) ->
       window.game.svg.text String.fromCharCode 'A'.charCodeAt() + window.colorBallId
       .center position[0] + 0.5, position[1] + 0.5
       window.colorBallId += 1
-  window.game.ball.remove()
-  window.game.magnet.remove()
+    window.game.ball.remove()
+    window.game.magnet.remove()
   #game = new Game null, level.board, [10,25], [6,25]
   ## A good test for hugMoves
   #level.board[13][25] = blank
