@@ -16,11 +16,11 @@ style = """
     100% { stroke-opacity: 0.9; }
   }
 
-  .colorMagnet0 { fill: rgba(0,#{255-128*1.0},0); }
-  .colorMagnet1 { fill: rgba(0,#{255-128*0.7},0); }
-  .colorMagnet2 { fill: rgba(0,#{255-128*0.4},0); }
-  .colorMagnet3 { fill: rgba(0,#{255-128*0.2},0); }
-  .colorMagnet4 { fill: rgba(0,#{255-128*0.0},0); }
+  .colorMagnet0 { fill: #c8e8f3; }
+  .colorMagnet1 { fill: #94bdce; }
+  .colorMagnet2 { fill: #7b9eb2; }
+  .colorMagnet3 { fill: #5e8899; }
+  .colorMagnet4 { fill: #54707c; }
 """
 margin = 0.3 / 2
 obstacle = '1'
