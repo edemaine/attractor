@@ -2,18 +2,28 @@ svgtiler = {"0":{"parent":null,"board":[["?","?","?","?","?","?","?","?","?","?"
 board = svgtiler[0].board
 ballStart = [7,9]
 magnetStart = [4,9]
-colorBall = [
-  [8,7],
-  [7,7],
-  [7,8],
-  [7,9],
-  [7,10]
+colorBalls = [
+  [
+    [8,7],
+    [7,7],
+    [7,8],
+    [7,9],
+    [7,10]
+  ],
+  [
+    [8,10]
+  ],
+  [
+    [12,11],
+    [13,11],
+    [13,10],
+    [13,9],
+    [13,8]
+  ],
+  [
+    [12,8]
+  ]
 ]
-/*
-colorBall = [
-  [8,10]
-]
-*/
 if(typeof module !== "undefined") {
   module.exports = {board, ballStart, magnetStart}
 }
