@@ -21,6 +21,7 @@ style = """
   .colorMagnet2 { fill: #7b9eb2; }
   .colorMagnet3 { fill: #5e8899; }
   .colorMagnet4 { fill: #54707c; }
+  .colorMagnetAlt { fill: #d4afb9; }
   text { font-size: 0.6px; }
 """
 margin = 0.3 / 2
@@ -96,6 +97,7 @@ class Game
 
   renderBoard: ->
     return unless @svg?
+    @svg.clear()
     @svg.element('style').words style
     @squares =
       for col, x in @board
@@ -191,11 +193,15 @@ search = (hug = false) ->
     window.game.renderBoard()
     window.colorBall = window.colorBalls.shift() ? []
     window.colorBallId ?= 0
+    if window.colorBall.length == 1
+      colorMagnetClass = (i) -> "colorMagnetAlt"
+    else
+      colorMagnetClass = (i) -> "colorMagnet#{i}"
     for position, i in window.colorBall
       console.log i,i + (window.colorBall.length < 5)
       window.game.svg.circle 0.666
       .center position[0] + 0.5, position[1] + 0.5
-      .addClass "colorMagnet#{i + (window.colorBall.length < 5)}"
+      .addClass colorMagnetClass i
       window.game.svg.text String.fromCharCode 'A'.charCodeAt() + window.colorBallId
       .center position[0] + 0.5, position[1] + 0.5
       window.colorBallId += 1
@@ -220,7 +226,7 @@ search = (hug = false) ->
         if game.ballXY[0] == position[0] and
            game.ballXY[1] == position[1]
           window.game.squares[game.magnetXY[0]][game.magnetXY[1]]
-          .addClass "colorMagnet#{i + (window.colorBall.length < 5)}"
+          .addClass colorMagnetClass i
     if game.win()
       log '## WIN! :-('
       here = state
