@@ -21,7 +21,7 @@ style = """
   .colorMagnet2 { fill: #7b9eb2; }
   .colorMagnet3 { fill: #5e8899; }
   .colorMagnet4 { fill: #54707c; }
-  .colorMagnetAlt { fill: #d4afb9; }
+  .colorMagnetAlt { fill: #a0d8c3; }
   text { font-size: 0.6px; }
 """
 margin = 0.3 / 2
