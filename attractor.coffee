@@ -1,5 +1,6 @@
 style = """
   line { stroke: #444; stroke-dasharray: 0.075; stroke-width: 0.075; }
+  .border { stroke: #222; stroke-dasharray: 1 }
   .obstacle { fill: purple; }
   .blank { fill: white; }
 
@@ -263,6 +264,21 @@ search = (hug = false) ->
       unless moveState of parent
         parent[moveState] = state
         todo.push moveState
+  if window.colorBall?
+    for row, x in window.game.squares
+      for square, y in row
+        squareClass = square.attr 'class'
+        continue unless 0 <= squareClass.indexOf 'blank'
+        for [dx,dy] in [[+1,0],[0,+1]] #[[-1,0], [+1,0], [0,-1], [0,+1]]
+          neighborClass = window.game.squares[x+dx]?[y+dy]?.attr 'class'
+          if neighborClass? and neighborClass != squareClass and
+             0 <= neighborClass.indexOf 'blank'
+            perp =
+              x: dy
+              y: dx
+            window.game.svg.line x + (dx > 0), y + (dy > 0),
+                                 x + (dx > 0) + perp.x, y + (dy > 0) + perp.y
+            .addClass 'border'
   log '## LOSE! :-)'
   log "#{(key for key of parent).length} visited states"
   filled = 0
