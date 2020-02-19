@@ -4,7 +4,7 @@
   "description": "Counterexamples to conjecture that a magnet outside a polygon can grab a metal ball inside a polygon",
   "main": "attractor.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepare": "coffee -c attractor.coffee"
   },
   "repository": {
     "type": "git",
