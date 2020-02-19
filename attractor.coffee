@@ -208,8 +208,10 @@ search = (hug = false) ->
     game = new Game null, level.board, level.ballStart, level.magnetStart
   if window.colorBalls?
     window.game.renderBoard()
-    window.colorBall = window.colorBalls.shift() ? []
-    window.colorBallId ?= 0
+    unless window.colorBallsLeft?.length
+      window.colorBallsLeft = window.colorBalls[..]
+      window.colorBallId = 0
+    window.colorBall = window.colorBallsLeft.shift()
     if window.colorBall.length == 1
       colorMagnetClass = (i) -> "colorMagnetAlt"
     else
