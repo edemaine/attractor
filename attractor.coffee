@@ -196,6 +196,9 @@ log = (msg) ->
   console.log msg
   document?.getElementById('log')?.innerHTML += "#{msg}<br>"
 
+showColors = ->
+  window.colorBalls? and document.getElementById('regions')?.checked
+
 search = (hug = false) ->
   logReset()
   if window?
@@ -206,7 +209,7 @@ search = (hug = false) ->
     levelFile = "./#{levelFile}"
     level = require levelFile
     game = new Game null, level.board, level.ballStart, level.magnetStart
-  if window.colorBalls?
+  if showColors()
     window.game.renderBoard()
     unless window.colorBallsLeft?.length
       window.colorBallsLeft = window.colorBalls[..]
