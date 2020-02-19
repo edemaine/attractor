@@ -1,0 +1,22 @@
+{
+  "name": "attractor",
+  "version": "0.0.0",
+  "description": "Counterexamples to conjecture that a magnet outside a polygon can grab a metal ball inside a polygon",
+  "main": "attractor.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edemaine/attractor.git"
+  },
+  "author": "Erik Demaine",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/edemaine/attractor/issues"
+  },
+  "homepage": "https://github.com/edemaine/attractor#readme",
+  "dependencies": {
+    "svg.js": "^2.7.1"
+  }
+}
