@@ -16,14 +16,30 @@ style = """
     100% { stroke-opacity: 0.9; }
   }
 
-  .colorMagnet0 { fill: #c8e8f3; }
-  .colorMagnet1 { fill: #94bdce; }
-  .colorMagnet2 { fill: #7b9eb2; }
-  .colorMagnet3 { fill: #5e8899; }
-  .colorMagnet4 { fill: #54707c; }
-  .colorMagnetAlt { fill: #a0d8c3; }
+  .colorMagnet0 { fill: hsl(220,50%,80%); }
+  .colorMagnet1 { fill: hsl(200,35%,65%); }
+  .colorMagnet2 { fill: hsl(180,31%,61%); }
+  .colorMagnet3 { fill: hsl(160,27%,57%); }
+  .colorMagnet4 { fill: hsl(140,24%,54%); }
+  .colorMagnet5 { fill: hsl(120,20%,50%); }
+  .colorMagnetAlt { fill: hsl(60,50%,70%); }
   text { font-size: 0.6px; }
 """
+### Previous attempts at color schemes:
+  .colorMagnet0 { fill: hsl(200,0%,70%); }
+  .colorMagnet1 { fill: hsl(200,20%,68%); }
+  .colorMagnet2 { fill: hsl(200,40%,66%); }
+  .colorMagnet3 { fill: hsl(200,60%,64%); }
+  .colorMagnet4 { fill: hsl(200,80%,62%); }
+  .colorMagnet5 { fill: hsl(200,100%,60%); }
+
+  .colorMagnet0 { fill: hsl(220,50%,70%); }
+  .colorMagnet1 { fill: hsl(200,50%,70%); }
+  .colorMagnet2 { fill: hsl(180,50%,70%); }
+  .colorMagnet3 { fill: hsl(160,50%,70%); }
+  .colorMagnet4 { fill: hsl(140,50%,70%); }
+  .colorMagnet5 { fill: hsl(120,50%,70%); }
+###
 margin = 0.3 / 2
 obstacle = '1'
 blank = '?'
