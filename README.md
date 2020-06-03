@@ -9,7 +9,9 @@ the polygon.
 You can play the levels with arrow keys,
 or ask the app to search for a solution via BFS.
 This website is a companion to
-<a href="http://jasonku.mit.edu/pdf/BEACON_JCDCGGG.pdf">our JCDCGGG 2018 paper</a>
+<a href="https://arXiv.org/abs/2006.01202">our paper</a>
+(originally appearing at
+<a href="http://jasonku.mit.edu/pdf/BEACON_JCDCGGG.pdf">JCDCGGG 2018</a>)
 which provides the context for the problem
 and proves formally that these examples are indeed unsolvable.
 This repository provides the source code for this demo site.
